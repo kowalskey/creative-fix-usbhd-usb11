@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ffi (1.9.17)
+    libusb (0.6.2)
+      ffi (~> 1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  libusb (~> 0.6.2)
+
+BUNDLED WITH
+   1.13.7
