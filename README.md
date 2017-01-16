@@ -1,8 +1,9 @@
 
 
 ### Fix for creative USB Sound Blaster HD working as USB full-speed device (USB 1.1)
+
 This little Ruby script switches Creative USB Sound Blaster HD
-(vid: 0x041e pid: 0x3232) from USB full-speed mode to USB high-speed mode
+(`vid: 0x041e pid: 0x3232)` from USB full-speed mode to USB high-speed mode
 so it's possible to use it with higher bitrate/bit depth combinations under linux
 
 
@@ -12,20 +13,20 @@ so it's possible to use it with higher bitrate/bit depth combinations under linu
 2. Install bundler gem (http://bundler.io/) or simply `sudo gem install bundler --no-ri --no-rdoc`
 3. Install app dependencies (just run `bundler` from checkout directory)
 
-
+ 
 ### How to call it
 
 You need to run it as `root` to be able to detach kernel drivers etc.
 
 Script doesn't expect parameters so following should be enough:
 ```
-sudo ./fix-creative-usb-fullspeed.rb
+$ sudo ./fix-creative-usb-fullspeed.rb
 ```
-
+ 
 ### How to check whether it did something
 
 #### Check USB tree before calling script
-`sudo lsusb -t`:
+`$ sudo lsusb -t`:
 ```
 [...]
 /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/16p, 480M
@@ -38,10 +39,10 @@ sudo ./fix-creative-usb-fullspeed.rb
 [...]
 ```
 
-
+ 
 #### Check USB tree after calling script
 
-`sudo lsusb -t`:
+`$ sudo lsusb -t`:
 ```
 [...]
 /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/16p, 480M
