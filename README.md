@@ -10,7 +10,7 @@ so it's possible to use it with higher bitrate/bit depth combinations under linu
 
 1. Install ruby
 2. Install bundler gem (http://bundler.io/) or simply `sudo gem install bundler --no-ri --no-rdoc`
-3. Istall app dependencies (just run `bundler` from checkout directory)
+3. Install app dependencies (just run `bundler` from checkout directory)
 
 
 ### How to call it
@@ -50,6 +50,7 @@ sudo ./fix-creative-usb-fullspeed.rb
     |__ Port 1: Dev 42, If 1, Class=Audio, Driver=snd-usb-audio, 480M
     |__ Port 1: Dev 42, If 4, Class=Audio, Driver=snd-usb-audio, 480M
     |__ Port 1: Dev 42, If 2, Class=Audio, Driver=snd-usb-audio, 480M
+    |__ Port 1: Dev 42, If 0, Class=Audio, Driver=snd-usb-audio, 480M
 [...]
 ```
 
