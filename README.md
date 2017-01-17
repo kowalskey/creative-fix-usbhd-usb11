@@ -13,16 +13,23 @@ so it's possible to use it with higher bitrate/bit depth combinations under linu
 2. Install bundler gem (http://bundler.io/) or simply `sudo gem install bundler --no-ri --no-rdoc`
 3. Install app dependencies (just run `bundler` from checkout directory)
 
- 
+
 ### How to call it
 
 You need to run it as `root` to be able to detach kernel drivers etc.
 
 Script doesn't expect parameters so following should be enough:
 ```
-$ sudo ./fix-creative-usb-fullspeed.rb
+$ sudo ./fix-creative-usb-fullspeed.rb -m hispeed
 ```
- 
+
+If you want to go back to `fullspeed` just pass it instead of `hispeed`
+to script:
+```
+$ sudo ./fix-creative-usb-fullspeed.rb -m fullspeed
+```
+
+
 ### How to check whether it did something
 
 #### Check USB tree before calling script

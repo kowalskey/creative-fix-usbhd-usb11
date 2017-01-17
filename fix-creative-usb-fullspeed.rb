@@ -1,7 +1,8 @@
-#!/usr/bin/env ruby
+#!/usr/bin/ruby
 
-require 'bundler/setup'
+require "bundler/setup"
 require "libusb"
+require "optparse"
 
 class CreativeUSBModeFixer
 
@@ -30,6 +31,18 @@ class CreativeUSBModeFixer
   def initialize
     @usb = LIBUSB::Context.new
     @device = @usb.devices( idVendor: VENDOR, idProduct: PRODUCT).first
+
+    parse_opts
+
+  end
+
+  def parse_opts
+    OptionParser.new do |opts|
+      opts.on("-m","--mode USB_MODE",[:fullspeed,:hispeed]) do |mode|
+        @mode = mode
+      end
+    end.parse!
+
   end
 
   def disconnect_drivers
@@ -52,7 +65,26 @@ class CreativeUSBModeFixer
     switch_usb_mode(:fullspeed)
   end
 
+  def get_current_mode
+    if @device.device_speed == :SPEED_FULL
+      return :fullspeed
+    elsif @device.device_speed == :SPEED_HIGH
+      return :hispeed
+    end
+  end
+
   def run
+    if @mode.nil?
+      puts "no mode selected!"
+    end
+
+    if get_current_mode == @mode
+      puts "device is already in mode #{@mode}"
+      return true
+    end
+
+    puts "switching device to mode #{@mode}"
+
     if @device.nil?
       STDERR.puts "Unable to find device VID=0x0%04x/PID=0x%04x" % [VENDOR,PRODUCT]
       return false
@@ -65,7 +97,7 @@ class CreativeUSBModeFixer
     end
 
     begin
-      switch_to_usb_hispeed
+      switch_usb_mode(@mode)
     rescue => e
       STDERR.puts "Failed to switch device to HiSpeed mode! (exception: #{e})"
     end
